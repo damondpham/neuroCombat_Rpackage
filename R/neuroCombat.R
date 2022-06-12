@@ -118,7 +118,7 @@ neuroCombat <- function(dat,
                                       s.data=s.data, 
                                       dataDict=dataDict,
                                       parametric=parametric,
-                                      mean.only=mean.only,
+                                      mean.only=mean.only
                                      )
     } else {
         estimators <- getNonEbEstimators(naiveEstimators=naiveEstimators,

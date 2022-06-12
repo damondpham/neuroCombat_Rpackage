@@ -405,7 +405,7 @@ getEbEstimators <- function(naiveEstimators,
     if (parametric){
         temp <- .getParametricEstimators()
     } else {
-        temp <- .getNonParametricEstimators(BPPARAM=BPPARAM)
+        temp <- .getNonParametricEstimators()
     }
     if(!is.null(ref.batch)){
         temp[["gamma.star"]][ref,] <- 0  ## set reference batch mean equal to 0
