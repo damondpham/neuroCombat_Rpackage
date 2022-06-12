@@ -27,8 +27,6 @@
 #' @param mean.only Should only correction factors be calculated for location?
 #'     FALSE by default.
 #' @param ref.batch NULL by default.
-#' @param BPPARAM BiocParallelParam for parallel operation. 
-#'     This is mostly useful when \code{parametric=FALSE}.
 #' @param verbose Should progress messages be printed? TRUE by default.
 #' 
 #' @return A named \code{list} of length 5. The 1st element (\code{dat.combat})
@@ -42,7 +40,6 @@
 #'     centered after adjusting for biological covariates).
 #' 
 #' 
-#' @importFrom BiocParallel bpparam
 #' @export
 neuroCombat <- function(dat, 
                         batch, 
@@ -51,8 +48,7 @@ neuroCombat <- function(dat,
                         parametric=TRUE,
                         mean.only=FALSE,
                         ref.batch=NULL,
-                        verbose=TRUE,
-                        BPPARAM=bpparam("SerialParam")
+                        verbose=TRUE
 ){
     dat <- as.matrix(dat)
     dat.original <- dat
@@ -123,7 +119,7 @@ neuroCombat <- function(dat,
                                       dataDict=dataDict,
                                       parametric=parametric,
                                       mean.only=mean.only,
-                                      BPPARAM=BPPARAM)
+                                     )
     } else {
         estimators <- getNonEbEstimators(naiveEstimators=naiveEstimators,
                                          dataDict=dataDict)

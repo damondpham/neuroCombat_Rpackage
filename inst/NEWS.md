@@ -1,3 +1,6 @@
+Changes in Version 1.0.14
+	- Remove BiocParallel.
+
 Changes in Version 1.0.13
 	- Added neuroCombatData package in Remotes
 

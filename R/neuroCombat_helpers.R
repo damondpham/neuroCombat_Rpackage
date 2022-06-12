@@ -336,14 +336,11 @@ getNaiveEstimators <- function(s.data,
     return(out)
 }
 
-#' @importFrom BiocParallel bpparam
-#' @importFrom BiocParallel bplapply
 getEbEstimators <- function(naiveEstimators,
                             s.data, 
                             dataDict,
                             parametric=TRUE, 
-                            mean.only=FALSE,
-                            BPPARAM=bpparam("SerialParam")
+                            mean.only=FALSE
 ){
     gamma.hat <- naiveEstimators[["gamma.hat"]]
     delta.hat <- naiveEstimators[["delta.hat"]]
@@ -375,10 +372,10 @@ getEbEstimators <- function(naiveEstimators,
         return(out)
     }
 
-    .getNonParametricEstimators <- function(BPPARAM=bpparam("SerialParam")){
+    .getNonParametricEstimators <- function(){
         gamma.star <- delta.star <- NULL
        
-        results <- bplapply(1:n.batch, function(i){
+        results <- lapply(1:n.batch, function(i){
             if (mean.only){
                 delta.hat[i, ] = 1
             }
@@ -386,7 +383,7 @@ getEbEstimators <- function(naiveEstimators,
                                gamma.hat[i,],
                                delta.hat[i,])
             return(temp)
-        }, BPPARAM = BPPARAM)
+        })
         gamma.star <- lapply(results, function(x) x[1,])
         delta.star <- lapply(results, function(x) x[2,])
         gamma.star <- do.call("rbind",gamma.star)

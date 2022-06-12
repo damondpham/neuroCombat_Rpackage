@@ -12,8 +12,7 @@ neuroCombat(
   parametric = TRUE,
   mean.only = FALSE,
   ref.batch = NULL,
-  verbose = TRUE,
-  BPPARAM = bpparam("SerialParam")
+  verbose = TRUE
 )
 }
 \arguments{
@@ -42,9 +41,6 @@ FALSE by default.}
 \item{ref.batch}{NULL by default.}
 
 \item{verbose}{Should progress messages be printed? TRUE by default.}
-
-\item{BPPARAM}{BiocParallelParam for parallel operation. 
-This is mostly useful when \code{parametric=FALSE}.}
 }
 \value{
 A named \code{list} of length 5. The 1st element (\code{dat.combat})
